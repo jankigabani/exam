@@ -1,0 +1,43 @@
+@model Repositories.Models.tblAdmin
+
+@{
+    ViewData["Title"] = "Trip Details";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<style>
+    .trip-details {
+        font-family: Arial, sans-serif;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px;
+        background-color: #f9f9f9;
+    }
+
+    .trip-details strong {
+        color: #333;
+    }
+
+    .actions-link {
+        text-decoration: none;
+        color: blue;
+    }
+</style>
+
+<div class="trip-details">
+    @if (Model != null)
+    {
+        <strong>Id: </strong>@Model.c_ticketid<br>
+        <strong>Trip: </strong>@Model.c_trip<br>
+        <strong>Price: </strong>@Model.c_price<br>
+        <strong>ticketstock: </strong>@Model.c_ticketstock<br>
+        <strong>current stock: </strong>@Model.c_currentstock<br>
+        <a asp-action="Index" class="btn btn-primary">Back to List</a><br>
+    }
+    else
+    {
+        <p>No Trip details found.</p>
+    }
+</div>

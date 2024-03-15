@@ -1,0 +1,39 @@
+@model Repositories.Models.tblExecutiveLogin
+
+<head>
+    <!-- SweetAlert CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+
+    <!-- SweetAlert JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+    @if (TempData["exloginfail"] != null)
+    {
+        <script>
+            Swal.fire({
+                title: '@TempData["exloginfail"]',
+                icon: 'error',
+                confrimButtonText: 'ok'
+            });
+        </script>
+    }
+
+
+</head>
+
+<body>
+
+    <form asp-action="Login" asp-controller="ExecutiveToken" method="post">
+        <label for="">Email:</label><br>
+        <input type="text" asp-for="c_userid"><br>
+        <br><br>
+
+        <label for="">Password:</label><br>
+        <input type="password" asp-for="c_password"><br>
+        <br><br>
+
+        <button type="submit">Login</button>
+    </form>
+
+</body>

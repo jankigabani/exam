@@ -1,0 +1,74 @@
+@model List<Repositories.Models.tblCustomerToken>
+
+<head>
+    <!-- SweetAlert CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+
+    <!-- SweetAlert JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+
+    @* @{
+        Layout = "~/Views/Shared/_layout2.cshtml";
+    } *@
+
+    @if (TempData["exlogin"] != null)
+    {
+        <script>
+            Swal.fire({
+                title: '@TempData["exlogin"]',
+                icon: 'success',
+                confrimButtonText: 'ok'
+            });
+        </script>
+    }
+</head>
+
+<body>
+    @if (ViewBag.session != null)
+    {
+        <h2>Welcome @ViewBag.session admin</h2>
+    }
+    <table>
+        <thead>
+            <tr>
+                <th>Token Id</th>
+                <th>Token Type</th>
+                <th>Token Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var token in Model)
+            {
+                <tr>
+                    <td>@token.token_id</td>
+                    <td>@token.token_type</td>
+                    <td>@token.token_status</td>
+                    <td><a>resolve</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>

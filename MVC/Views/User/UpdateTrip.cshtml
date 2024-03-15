@@ -1,0 +1,54 @@
+@model Repositories.Models.tblAdmin
+
+@{
+    ViewData["Title"] = "Edit Trip Details";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="post" asp-action="UpdateTrip">
+    <input type="hidden" asp-for="c_ticketid" />
+    <div class="form-group">
+        <label asp-for="c_trip" class="col-sm-2 control-label">Trip</label>
+        <div class="col-sm-10">
+            <select asp-for="c_trip" class="form-control">
+                <option value="Surat-To-Mumbai">Surat-To-Mumbai</option>
+                <option value="Mumbai-To-Surat">Mumbai-To-Surat</option>
+                <option value="Surat-To-Diu">Surat-To-Diu</option>
+                <option value="Diu-To-Surat">Diu-To-Surat</option>
+                <option value="Diu-To-Vadodara">Diu-To-Vadodara</option>
+            </select>
+            <span asp-validation-for="c_trip" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="c_price" class="col-sm-2 control-label">Price</label>
+        <div class="col-sm-10">
+            <input asp-for="c_price" class="form-control" />
+            <span asp-validation-for="c_price" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="c_ticketstock" class="col-sm-2 control-label">Ticket Stock</label>
+        <div class="col-sm-10">
+            <input asp-for="c_ticketstock" class="form-control" />
+            <span asp-validation-for="c_ticketstock" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="c_currentstock" class="col-sm-2 control-label">Current Stock</label>
+        <div class="col-sm-10">
+            <input asp-for="c_currentstock" class="form-control" />
+            <span asp-validation-for="c_currentstock" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Edit Trip</button>
+        </div>
+    </div>
+</form>

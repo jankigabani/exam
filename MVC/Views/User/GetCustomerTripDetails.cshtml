@@ -1,0 +1,70 @@
+@model List<Repositories.Models.tblCustomer>
+@{
+    ViewData["Title"] = "Your Bookings";
+}
+
+<h2>@Context.Session.GetString("username")</h2><br>
+
+<h5>Your Bookings History!!</h5><br>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Customer Id</th>
+            <th>Ticket Id</th>
+            <th>User Id</th>
+            <th>Trip Date</th>
+            <th>Trip</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Cost</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var bus in Model)
+        {
+            <tr>
+                <td>@bus.c_customerid</td>
+                <td>@bus.c_ticketid</td>
+                <td>@bus.c_userid</td>
+                <td>@bus.c_tripdate.ToShortDateString()</td>
+                <td>@bus.c_trip</td>
+                <td>@bus.c_price</td>
+                <td>@bus.c_ticketqnt</td>
+                <td>@bus.c_totalcost</td>
+                <td>@bus.c_bookingstatus</td>
+                <td>
+                    <button class="btn btn-info cancel-trip" data-customer-id="@bus.c_customerid">Cancel Trip</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".cancel-trip").click(function () {
+                var customerId = $(this).data("customer-id");
+                $.ajax({
+                    url: "@Url.Action("CancelTrip", "User")",
+                    method: "POST",
+                    data: { id: customerId },
+                    success: function (response) {
+                        if (response.success) {
+                            alert("Trip cancelled successfully!");
+                            location.reload(); // Refresh the page
+                        } else {
+                            alert("Error cancelling trip!");
+                        }
+                    },
+                    error: function () {
+                        alert("Error cancelling trip!");
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -1,0 +1,37 @@
+@model List<Repositories.Models.tblAdmin>
+
+<h2> @Context.Session.GetString("username")🧑🏻🚌</h2>
+<p>
+    <a asp-controller="User" asp-action="Logout" class="btn btn-danger">Logout</a>
+    <a asp-action="InsertTrip" class="btn btn-primary">Add New Trip</a>
+</p>
+
+<table class="table" style="width: 100%; border-collapse: collapse;">
+    <thead>
+        <tr style="background-color: #f2f2f2;">
+            <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Trip ID</th>
+            <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Trip</th>
+            <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Price</th>
+            <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Ticket Stock</th>
+            <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Current Stock</th>
+            <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tblAdmin in Model)
+        {
+            <tr>
+                <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">@tblAdmin.c_ticketid</td>
+                <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">@tblAdmin.c_trip</td>
+                <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">@tblAdmin.c_price</td>
+                <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">@tblAdmin.c_ticketstock</td>
+                <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">@tblAdmin.c_currentstock</td>
+                <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">
+                    <a asp-action="GetTripDetails" asp-route-id="@tblAdmin.c_ticketid" style="text-decoration: none; color: blue;">Details</a> |
+                    <a asp-action="UpdateTrip" asp-route-id="@tblAdmin.c_ticketid" style="text-decoration: none; color: blue;">Edit</a> |
+                    <a asp-action="DeleteTrip" asp-route-id="@tblAdmin.c_ticketid" style="text-decoration: none; color: red;">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

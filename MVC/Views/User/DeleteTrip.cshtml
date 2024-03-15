@@ -1,0 +1,28 @@
+@model Repositories.Models.tblAdmin
+
+@{
+    ViewData["Title"] = "Trip Details";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    @if (Model != null)
+    {
+        <strong>Id</strong>@Model.c_ticketid<br>
+        <strong>Trip</strong>@Model.c_trip<br>
+        <strong>Price</strong>@Model.c_price<br>
+        <strong>ticketstock</strong>@Model.c_ticketstock<br>
+        <strong>current stock</strong>@Model.c_currentstock<br>
+        <strong>Actions</strong>
+      <form method="post" asp-action="DeleteTripConfirmed">
+            <input type="hidden" name="Id" value="@Model.c_ticketid" />
+            <button type="submit">Confirm Delete</button>
+        </form><br>
+        <a asp-action="Index">Back to List</a><br>
+    }
+    else
+    {
+        <p>No student details found.</p>
+    }
+</div>
